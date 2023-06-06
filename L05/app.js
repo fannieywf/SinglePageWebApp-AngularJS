@@ -7,7 +7,7 @@ angular.module('myFirstApp', [])
 // $ sign in front of some variable name: reserved for Angular
 
 .controller('MyFirstController', function ($scope) {
-// 1. $scope.xx
+// $scope.xx
     $scope.name = "Fannie";
     $scope.sayHello = function () {
         return "Hello!";
