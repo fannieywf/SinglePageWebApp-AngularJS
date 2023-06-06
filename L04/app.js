@@ -10,8 +10,6 @@
 // see Console from Firefox: Tools/BrowserTools/Web Developer Tools
 'use strict';
 
-
-
     // 2. Angular JS exposes on global scope is really just 1 particular object - angular
     // module method first takes the name of application
     // module method then takes a list of dependencies in our application is going to need, in form of array
