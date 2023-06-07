@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML5 Custom Attributes</title>
+  </head>
+  <body>
+    <h1>HTML5 Custom Attributes</h1>
+
+    <!-- <div id="target">
+      <section>Section 1
+        <article>Article 1</article>
+      </section>
+    </div> -->
+
+    <!-- nothing really happen in console,
+    since greeting is not a standard HTML attribute.
+    Software that runs the browser tries to interpret every tags and attributes,
+    and does not know what to do with greeting attribute, and IGNORES it. -->
+    <!-- <div id="target" greeting="hello"> -->
+    <div id="target" ng-app="myTestApp">
+        <section>Section 1
+          <article>Article 1</article>
+        </section>
+    </div>
+  
+    <script>
+        var elem = document.getElementById('target');
+        console.log("elem:", elem);
+        // there are methods and functions in JS to get actual attribute and values of attributes
+        // console.log(elem.getAttribute('greeting'));
+        console.log("elem.getAttribute('ng-app'):", elem.getAttribute('ng-app'));
+
+        var elem2 = document.querySelector("[ng-app]");
+        console.log("elem2", elem2);
+        console.log("elem2.getAttribute('ng-app'):", elem2.getAttribute('ng-app'));
+
+    </script>
+
+  </body>
+</html>
