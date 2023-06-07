@@ -12,7 +12,12 @@
     <div ng-controller="NameCalculatorController">
       <div>
         Your name:
-        <input type="text" ng-model="name">
+        <!-- input field is bounded to name on scope to view model, 
+        and also displayNumeric() function whenever the key is pressed or up,
+        to allow a bit of flexibility on view or in HTML -->
+        <input type="text" 
+        ng-model="name"
+        ng-keyup="displayNumeric();">
       </div>
       <div> Total Numeric value of person's name is: 
         {{totalValue}}
