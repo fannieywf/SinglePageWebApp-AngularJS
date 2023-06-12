@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app='MsgApp'>
+  <head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <style> body { font-size: 1.2em; }</style>
+    <!-- Expression: {{exp}}, something that evaluates to some value
+    processed by Angular & roughly similar to the result of eval(some_js)
+    executed in the context of the scope & has access to properties on $scope
+    Does not throw errors if it returns in a TypeError or ReferenceError
+    Control flow functions (e.g. "if" statements, etc.) are not allowed
+    Accept a filter or a filter chain to format the output -->
+    <!-- Interpolation, process of evaluating a string literal containing one or more placeholders, which are replaced with values
+    In Angular, this string: Message is {{message}} (provided message = "hello") is interpolated into this string:
+    Message is hello.
+    Still connected to the original message property. If $scope.message changes, so will the interpolation result -->
+    <title>Expressions and Interpolation</title>
+  </head>
+  <body>
+    <h1>Expressions and Interpolation</h1>
+    <div ng-controller='MsgController'>
+        {{name}} has a message for you:  <br>
+        {{sayMessage()}}
+        <!-- error, does not output anything -->
+        {{askdfh}}
+        <div>
+            <button ng-click="delight()">Delight</button>
+            <br>
+            <!-- <img src="images/{{stateOfMood}}.png"> -->
+            <img ng-src="images/{{stateOfMood}}.png">
+        </div>
+    </div>
+  </body>
+</html>
