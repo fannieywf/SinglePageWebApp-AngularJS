@@ -4,6 +4,7 @@
 angular.module('MsgApp', [])
 .controller('MsgController', MsgController);
 
+// https://docs.angularjs.org/guide/filter
 // augment $inject property that MsgController is placed
 MsgController.$inject = ['$scope', '$filter'];
 function MsgController($scope, $filter) {
