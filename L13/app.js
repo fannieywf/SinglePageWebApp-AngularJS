@@ -4,9 +4,10 @@
 angular.module('MsgApp', [])
 .controller('MsgController', MsgController)
 // 2nd step: register factory filter with Angular application
-.filter('loves', LovesFilter);
+.filter('loves', LovesFilter)
+.filter('truth', TruthFilter);
 
-// 4th step: inject loveFilter into controller
+// 4th step in JS: inject loveFilter into controller
 // loveFilter: loves comes from filter name loves, Filter is appended by Angular.js
 MsgController.$inject = ['$scope', 'lovesFilter'];
 function MsgController($scope, lovesFilter) {
@@ -29,11 +30,20 @@ function MsgController($scope, lovesFilter) {
   };
 }
 
-// 1st step: create filter factory function
+// 1st step: create / define filter factory function
 function LovesFilter() {
   return function (input) {
     input = input || "";
     input = input.replace("likes", "loves");
+    return input;
+  }
+}
+
+// 1.1st step: extra arguments can be supplied to the filter function
+function TruthFilter() {
+  return function (input, target, replace) {
+    input = input || "";
+    input = input.replace(target, replace);
     return input;
   }
 }

@@ -11,7 +11,12 @@
     <h1>Custom Filters</h1>
     <div ng-controller='MsgController'>
       Original: {{sayMessage()}} <br>
-      Loves: {{sayLovesMessage()}}
+      <!-- 4th step in HTML: instead of injecting it into controller, filter can be used directly in HTML -->
+      <!-- extra arguments: {{ expression | registeredName : arg1 : arg2 }} -->
+      <!-- chained filters: {{ expression | filterOne | filterTwo ... }} -->
+      Loves: {{sayLovesMessage()}} <br>
+      Truth: {{sayLovesMessage() | truth : 'sleep' : 'think' }} <br>
+      BIG TRUTH: {{sayLovesMessage() | truth : 'sleep' : 'think' | uppercase}} 
       <div>
         <button ng-click="delight()">Delight</button>
         <br>
