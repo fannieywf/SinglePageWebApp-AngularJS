@@ -5,17 +5,27 @@
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
     <style> body { font-size: 1.2em; }</style>
-    <title>The Digest Cycle</title>
+    <title>ng-repeat</title>
   </head>
   <body>
     <h1>The Digest Cycle</h1>
     <div ng-controller='CounterController'>
+      <button ng-click="showNumberOfWatchers()">
+        Log # of Watchers</button>
+        <!-- 3.way setting watches: two-way binding -->
+        <input type="text" ng-model="name">
       <div>
+        <!-- 2b. -->
+        <button ng-click="countOnce()">Up Once Counter (once)</button>
+        <!-- 3c. -->
         <button ng-click="upCounter()">Increment Counter</button>
       </div>
+      <!-- 2.way setting watches by interpolation using double curly braces the property -->
       <div>
+        Once counter: {{ onceCounter }} <br>
         Regular counter: {{ counter }}
       </div>
+
     </div>
   </body>
 </html>

@@ -1,9 +1,9 @@
-// Digest Cycle: running digest loops until all watchers report that nothing has changed - Dirty checking
-// Several ways to set up watchers:
-// 1. $scope.$watch - do not do this in a controller
-// 2. {{ someProp }}
-// 3. <input ... ng-model="someProp">
-// Only applies to things done inside Angular context
+// Digest Cycle does not get triggered automatically if events are unaware of Angular
+// instead of jQuery, $digest & $apply for not Angular-aware 
+// Solution:
+// 1) Call $digest after your custom code
+// 2) Wrap your custom code inside of $apply
+// 3) Find Angular specific service that handles the same functioality, e.g. $timeout
 
 (function () {
 'use strict';
@@ -11,47 +11,36 @@
 angular.module('CounterApp', [])
 .controller('CounterController', CounterController);
 
-CounterController.$inject = ['$scope'];
-function CounterController($scope) {
-  // 2a.
-  $scope.onceCounter = 0;
-  // 3a.
+// 3) $timeout
+CounterController.$inject = ['$scope', '$timeout'];
+function CounterController($scope, $timeout) {
   $scope.counter = 0;
-  // 3.way setting watches
-  $scope.name = "Fannie";
 
-  $scope.showNumberOfWatchers = function () {
-    // 1.
-    console.log("no. of Watchers: ", $scope.$$watchersCount);
-  };
-
-  // 2c.
-  $scope.countOnce = function () {
-    $scope.onceCounter = 1;
-  }
-
-  // 3b.
   $scope.upCounter = function () {
-    $scope.counter++;
+    $timeout(function () {
+        $scope.counter++;
+        console.log("Counter incremented!");
+    }, 2000);
   }
 
-  $scope.$watch(function () {
-    console.log("Digest Loop Fired!");
-  })
+  // 2) $apply
+  // $scope.upCounter = function () {
+  //   setTimeout(function () {
+  //     $scope.$apply(function () {
+  //       $scope.counter++;
+  //       console.log("Counter incremented!");
+  //     });
+  //   }, 2000);
+  // };
 
-  // 1.way setting watches: manually
-  // $scope.$watch('onceCounter', function (newValue, oldValue) {
-  //   console.log("onceCounter old value: ", oldValue);
-  //   console.log("onceCounter new value: ", newValue);
-  // });
-
-  // // 3d.
-  // $scope.$watch('counter', function (newValue, oldValue) {
-  //   console.log("counter old value: ", oldValue);
-  //   console.log("counter new value: ", newValue);
-  // });
-  
-
+  // 1) $digest
+  // $scope.upCounter = function () {
+  //   setTimeout(function () {
+  //     $scope.counter++;
+  //     console.log("Counter incremented!");
+  //     $scope.$digest();
+  //   }, 2000);
+  // };
 }
 
 })();
