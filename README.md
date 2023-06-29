@@ -1,5 +1,6 @@
 # SinglePageWebApp_AngularJS
 Coursera Single Page Web Application with AngularJS
+AngularJS v1.5.7
 
 Reference: https://github.com/jhu-ep-coursera/fullstack-course5
 
